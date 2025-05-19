@@ -90,8 +90,20 @@ def compute_overall_mAP(class_name, items, no_cactus=False):
     seq_root_names = SEQS_BY_CLASS[class_name]
 
     if no_cactus and class_name == "CLASS-AB":
+        if "Traffic" in seq_root_names:
+            seq_root_names.remove("Traffic")
+        if "ParkScene" in seq_root_names:
+            seq_root_names.remove("ParkScene")
         if "Cactus" in seq_root_names:
             seq_root_names.remove("Cactus")
+    if no_cactus and class_name == "CLASS-C":
+        if "RaceHorses_832x480" in seq_root_names:
+            seq_root_names.remove("RaceHorses_832x480")
+    if no_cactus and class_name == "CLASS-D":
+        if "BQSquare" in seq_root_names:
+            seq_root_names.remove("BQSquare")
+        if "RaceHorses_416x240" in seq_root_names:
+            seq_root_names.remove("RaceHorses_416x240")
 
     classwise_instances_results = []
     classwise_anchor_images = []

@@ -94,6 +94,23 @@ class Bypass(nn.Module):
                 enc_time,
                 mac_calculations,
             )
+        
+        split_inference = True
+
+        if split_inference is True:
+            print("conversion and encoding")
+            print(input.keys())
+            from fctm.libs.libcommon import fwd_uniform_quant, min_max_normalization
+            maxv = max(max(ft.max() for ft in input["data"].values()), 16.694171905517578)
+            minv = min(min(ft.min() for ft in input["data"].values()), -17.884761810302734)
+            
+            quant_tensors = []
+            for tag, ft in input["data"].items():
+                normalized_tensor = min_max_normalization(ft, minv, maxv)
+                quant_tensors.append({tag: fwd_uniform_quant(normalized_tensor, bitdepth=self.nbit_quant)})
+
+
+
 
         # for n-bit quantization error experiments
         max_lvl = ((2**self.nbit_quant) - 1) if self.nbit_quant != -1 else None
