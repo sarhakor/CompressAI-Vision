@@ -374,6 +374,7 @@ if __name__ == "__main__":
             assert args.mode == "FCM"
             if args.no_cactus is True:
                 class_ab["CLASS-AB"].remove("Traffic")
+                class_ab["CLASS-AB"].remove("Kimono")
                 class_ab["CLASS-AB"].remove("ParkScene")
                 class_ab["CLASS-AB"].remove("Cactus")
 
@@ -390,8 +391,11 @@ if __name__ == "__main__":
         }
 
         if args.mode == "FCM" and args.no_cactus is True:
+                class_c["CLASS-C"].remove("BQMall")
+                class_c["CLASS-C"].remove("PartyScene")
                 class_c["CLASS-C"].remove("RaceHorses_832x480")
-                class_d["CLASS-D"].remove("BQSquare")
+                class_d["CLASS-D"].remove("BlowingBubbles")
+                class_d["CLASS-D"].remove("BasketballPass")
                 class_d["CLASS-D"].remove("RaceHorses_416x240")
 
         classes = [class_ab, class_c, class_d]
@@ -425,11 +429,15 @@ if __name__ == "__main__":
             seq_list.remove("Cactus_1920x1080_50")
 
         if args.mode == "FCM" and args.no_cactus:
-            seq_list.remove("Cactus_1920x1080_50")
-            seq_list.remove("ParkScene_1920x1080_24")
             seq_list.remove("Traffic_2560x1600_30")
+            seq_list.remove("Kimono_1920x1080_24")
+            seq_list.remove("ParkScene_1920x1080_24")
+            seq_list.remove("Cactus_1920x1080_50")
+            seq_list.remove("BQMall_832x480_60")
+            seq_list.remove("PartyScene_832x480_50")
             seq_list.remove("RaceHorsesC_832x480_30")
-            seq_list.remove("BQSquare_416x240_60")
+            seq_list.remove("BasketballPass_416x240_50")
+            seq_list.remove("BlowingBubbles_416x240_50")
             seq_list.remove("RaceHorses_416x240_30")
 
         output_df = generate_csv_classwise_video_map(

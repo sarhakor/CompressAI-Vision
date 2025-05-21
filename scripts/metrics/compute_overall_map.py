@@ -92,16 +92,26 @@ def compute_overall_mAP(class_name, items, no_cactus=False):
     if no_cactus and class_name == "CLASS-AB":
         if "Traffic" in seq_root_names:
             seq_root_names.remove("Traffic")
+        if "Kimono" in seq_root_names:
+            seq_root_names.remove("Kimono")
         if "ParkScene" in seq_root_names:
             seq_root_names.remove("ParkScene")
         if "Cactus" in seq_root_names:
             seq_root_names.remove("Cactus")
+
     if no_cactus and class_name == "CLASS-C":
+        if "BQMall" in seq_root_names:
+            seq_root_names.remove("BQMall")
+        if "PartyScene" in seq_root_names:
+            seq_root_names.remove("PartyScene")
         if "RaceHorses_832x480" in seq_root_names:
             seq_root_names.remove("RaceHorses_832x480")
+
     if no_cactus and class_name == "CLASS-D":
-        if "BQSquare" in seq_root_names:
-            seq_root_names.remove("BQSquare")
+        if "BasketballPass" in seq_root_names:
+            seq_root_names.remove("BasketballPass")
+        if "BlowingBubbles" in seq_root_names:
+            seq_root_names.remove("BlowingBubbles")
         if "RaceHorses" in seq_root_names:
             seq_root_names.remove("RaceHorses")
 
