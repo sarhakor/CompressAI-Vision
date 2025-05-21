@@ -102,8 +102,8 @@ def compute_overall_mAP(class_name, items, no_cactus=False):
     if no_cactus and class_name == "CLASS-D":
         if "BQSquare" in seq_root_names:
             seq_root_names.remove("BQSquare")
-        if "RaceHorses_416x240" in seq_root_names:
-            seq_root_names.remove("RaceHorses_416x240")
+        if "RaceHorses" in seq_root_names:
+            seq_root_names.remove("RaceHorses")
 
     classwise_instances_results = []
     classwise_anchor_images = []
