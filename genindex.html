@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html >
 
   <head>
     <meta charset="utf-8" />
@@ -18,12 +18,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -32,21 +32,27 @@
     <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
   
   
@@ -55,15 +61,6 @@
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
-  
-  <div id="pst-scroll-pixel-helper"></div>
-
-  
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
-
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -117,11 +114,9 @@
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
-
   
 
 <a class="navbar-brand logo" href="index.html">
-  
   
   
   
@@ -131,8 +126,8 @@
       
     
     
-    <img src="_static/logo.svg" class="logo__image only-light" alt="CompressAI Vision - Home"/>
-    <script>document.write(`<img src="_static/logo.svg" class="logo__image only-dark" alt="CompressAI Vision - Home"/>`);</script>
+    <img src="_static/logo.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
   
   
 </a></div>
@@ -144,7 +139,6 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="walkthrough.html">Walkthrough</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli_usage.html">Command line usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docker.html">Docker</a></li>
 </ul>
@@ -221,22 +215,20 @@
 </a>
 
 
-
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
 `);
 </script>
 
-
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
 `);
 </script>
@@ -269,744 +261,8 @@ document.write(`
 <h1 id="index">Index</h1>
 
 <div class="genindex-jumpbox">
- <a href="#A"><strong>A</strong></a>
- | <a href="#B"><strong>B</strong></a>
- | <a href="#C"><strong>C</strong></a>
- | <a href="#D"><strong>D</strong></a>
- | <a href="#E"><strong>E</strong></a>
- | <a href="#F"><strong>F</strong></a>
- | <a href="#G"><strong>G</strong></a>
- | <a href="#H"><strong>H</strong></a>
- | <a href="#I"><strong>I</strong></a>
- | <a href="#J"><strong>J</strong></a>
- | <a href="#M"><strong>M</strong></a>
- | <a href="#O"><strong>O</strong></a>
- | <a href="#P"><strong>P</strong></a>
- | <a href="#Q"><strong>Q</strong></a>
- | <a href="#R"><strong>R</strong></a>
- | <a href="#S"><strong>S</strong></a>
- | <a href="#T"><strong>T</strong></a>
- | <a href="#V"><strong>V</strong></a>
- | <a href="#W"><strong>W</strong></a>
- | <a href="#X"><strong>X</strong></a>
- | <a href="#Y"><strong>Y</strong></a>
  
 </div>
-<h2 id="A">A</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/pipelines/fo_vcm/fo.html#compressai_vision.pipelines.fo_vcm.fo.predict.annexPredictions">annexPredictions() (in module compressai_vision.pipelines.fo_vcm.fo.predict)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/pipelines/fo_vcm/fo.html#compressai_vision.pipelines.fo_vcm.fo.predict.annexVideoPredictions">annexVideoPredictions() (in module compressai_vision.pipelines.fo_vcm.fo.predict)</a>
-</li>
-      <li><a href="compressai_vision/datasets.html#compressai_vision.datasets.DataCatalog.annotation_path">annotation_path (compressai_vision.datasets.DataCatalog property)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="B">B</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.BaseEvaluator">BaseEvaluator (class in compressai_vision.evaluators)</a>
-</li>
-      <li><a href="compressai_vision/model_wrappers.html#compressai_vision.model_wrappers.BaseWrapper">BaseWrapper (class in compressai_vision.model_wrappers)</a>
-</li>
-      <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#compressai_vision.pipelines.fo_vcm.pipeline.base.EncoderDecoder.BGR">BGR() (compressai_vision.pipelines.fo_vcm.pipeline.base.EncoderDecoder method)</a>
-
-      <ul>
-        <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#compressai_vision.pipelines.fo_vcm.pipeline.base.VoidEncoderDecoder.BGR">(compressai_vision.pipelines.fo_vcm.pipeline.base.VoidEncoderDecoder method)</a>
-</li>
-        <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#compressai_vision.pipelines.fo_vcm.pipeline.compressai.CompressAIEncoderDecoder.BGR">(compressai_vision.pipelines.fo_vcm.pipeline.compressai.CompressAIEncoderDecoder method)</a>
-</li>
-        <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#compressai_vision.pipelines.fo_vcm.pipeline.vtm.VTMEncoderDecoder.BGR">(compressai_vision.pipelines.fo_vcm.pipeline.vtm.VTMEncoderDecoder method)</a>
-</li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/pipelines/remote_inference.html#compressai_vision.pipelines.remote_inference.VideoRemoteInference.build_input_lists">build_input_lists() (compressai_vision.pipelines.remote_inference.VideoRemoteInference method)</a>
-
-      <ul>
-        <li><a href="compressai_vision/pipelines/split_inference.html#compressai_vision.pipelines.split_inference.VideoSplitInference.build_input_lists">(compressai_vision.pipelines.split_inference.VideoSplitInference method)</a>
-</li>
-      </ul></li>
-      <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.Bypass">Bypass (class in compressai_vision.codecs)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="C">C</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/model_wrappers.html#compressai_vision.model_wrappers.BaseWrapper.cfg">cfg (compressai_vision.model_wrappers.BaseWrapper property)</a>
-</li>
-      <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.COCOEVal">COCOEVal (class in compressai_vision.evaluators)</a>
-</li>
-      <li>
-    compressai_vision.codecs
-
-      <ul>
-        <li><a href="compressai_vision/codecs.html#module-compressai_vision.codecs">module</a>
-</li>
-      </ul></li>
-      <li>
-    compressai_vision.datasets
-
-      <ul>
-        <li><a href="compressai_vision/datasets.html#module-compressai_vision.datasets">module</a>
-</li>
-      </ul></li>
-      <li>
-    compressai_vision.evaluators
-
-      <ul>
-        <li><a href="compressai_vision/evaluators.html#module-compressai_vision.evaluators">module</a>
-</li>
-      </ul></li>
-      <li>
-    compressai_vision.model_wrappers
-
-      <ul>
-        <li><a href="compressai_vision/model_wrappers.html#module-compressai_vision.model_wrappers">module</a>
-</li>
-      </ul></li>
-      <li>
-    compressai_vision.pipelines.fo_vcm.conversion
-
-      <ul>
-        <li><a href="compressai_vision/pipelines/fo_vcm/conversion.html#module-compressai_vision.pipelines.fo_vcm.conversion">module</a>
-</li>
-      </ul></li>
-      <li>
-    compressai_vision.pipelines.fo_vcm.conversion.detectron2
-
-      <ul>
-        <li><a href="compressai_vision/pipelines/fo_vcm/conversion.html#module-compressai_vision.pipelines.fo_vcm.conversion.detectron2">module</a>
-</li>
-      </ul></li>
-      <li>
-    compressai_vision.pipelines.fo_vcm.conversion.sfu_hw_objects_v1
-
-      <ul>
-        <li><a href="compressai_vision/pipelines/fo_vcm/conversion.html#module-compressai_vision.pipelines.fo_vcm.conversion.sfu_hw_objects_v1">module</a>
-</li>
-      </ul></li>
-      <li>
-    compressai_vision.pipelines.fo_vcm.conversion.tvd_object_tracking_v1
-
-      <ul>
-        <li><a href="compressai_vision/pipelines/fo_vcm/conversion.html#module-compressai_vision.pipelines.fo_vcm.conversion.tvd_object_tracking_v1">module</a>
-</li>
-      </ul></li>
-      <li>
-    compressai_vision.pipelines.fo_vcm.fo
-
-      <ul>
-        <li><a href="compressai_vision/pipelines/fo_vcm/fo.html#module-compressai_vision.pipelines.fo_vcm.fo">module</a>
-</li>
-      </ul></li>
-      <li>
-    compressai_vision.pipelines.fo_vcm.fo.predict
-
-      <ul>
-        <li><a href="compressai_vision/pipelines/fo_vcm/fo.html#module-compressai_vision.pipelines.fo_vcm.fo.predict">module</a>
-</li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li>
-    compressai_vision.pipelines.fo_vcm.pipeline
-
-      <ul>
-        <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#module-compressai_vision.pipelines.fo_vcm.pipeline">module</a>
-</li>
-      </ul></li>
-      <li>
-    compressai_vision.pipelines.fo_vcm.pipeline.base
-
-      <ul>
-        <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#module-compressai_vision.pipelines.fo_vcm.pipeline.base">module</a>
-</li>
-      </ul></li>
-      <li>
-    compressai_vision.pipelines.fo_vcm.pipeline.compressai
-
-      <ul>
-        <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#module-compressai_vision.pipelines.fo_vcm.pipeline.compressai">module</a>
-</li>
-      </ul></li>
-      <li>
-    compressai_vision.pipelines.fo_vcm.pipeline.vtm
-
-      <ul>
-        <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#module-compressai_vision.pipelines.fo_vcm.pipeline.vtm">module</a>
-</li>
-      </ul></li>
-      <li>
-    compressai_vision.pipelines.remote_inference
-
-      <ul>
-        <li><a href="compressai_vision/pipelines/remote_inference.html#module-compressai_vision.pipelines.remote_inference">module</a>
-</li>
-      </ul></li>
-      <li>
-    compressai_vision.pipelines.split_inference
-
-      <ul>
-        <li><a href="compressai_vision/pipelines/split_inference.html#module-compressai_vision.pipelines.split_inference">module</a>
-</li>
-      </ul></li>
-      <li>
-    compressai_vision.registry
-
-      <ul>
-        <li><a href="compressai_vision/registry.html#module-compressai_vision.registry">module</a>
-</li>
-      </ul></li>
-      <li>
-    compressai_vision.registry.registry
-
-      <ul>
-        <li><a href="compressai_vision/registry.html#module-compressai_vision.registry.registry">module</a>
-</li>
-      </ul></li>
-      <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#compressai_vision.pipelines.fo_vcm.pipeline.compressai.CompressAIEncoderDecoder">CompressAIEncoderDecoder (class in compressai_vision.pipelines.fo_vcm.pipeline.compressai)</a>
-</li>
-      <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#compressai_vision.pipelines.fo_vcm.pipeline.base.EncoderDecoder.compute_msssim">compute_msssim() (compressai_vision.pipelines.fo_vcm.pipeline.base.EncoderDecoder method)</a>
-</li>
-      <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#compressai_vision.pipelines.fo_vcm.pipeline.base.EncoderDecoder.compute_psnr">compute_psnr() (compressai_vision.pipelines.fo_vcm.pipeline.base.EncoderDecoder method)</a>
-</li>
-      <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#compressai_vision.pipelines.fo_vcm.pipeline.base.EncoderDecoder.computeMetrics">computeMetrics() (compressai_vision.pipelines.fo_vcm.pipeline.base.EncoderDecoder method)</a>
-
-      <ul>
-        <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#compressai_vision.pipelines.fo_vcm.pipeline.compressai.CompressAIEncoderDecoder.computeMetrics">(compressai_vision.pipelines.fo_vcm.pipeline.compressai.CompressAIEncoderDecoder method)</a>
-</li>
-      </ul></li>
-      <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.VTM.convert_input_to_yuv">convert_input_to_yuv() (compressai_vision.codecs.VTM method)</a>
-</li>
-      <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.VTM.convert_yuv_to_pngs">convert_yuv_to_pngs() (compressai_vision.codecs.VTM method)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="D">D</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/datasets.html#compressai_vision.datasets.DataCatalog">DataCatalog (class in compressai_vision.datasets)</a>
-</li>
-      <li><a href="compressai_vision/datasets.html#compressai_vision.datasets.DataCatalog.dataset">dataset (compressai_vision.datasets.DataCatalog property)</a>
-</li>
-      <li><a href="compressai_vision/datasets.html#compressai_vision.datasets.DataCatalog.dataset_name">dataset_name (compressai_vision.datasets.DataCatalog property)</a>
-</li>
-      <li><a href="compressai_vision/datasets.html#compressai_vision.datasets.deccode_compressed_rle">deccode_compressed_rle() (in module compressai_vision.datasets)</a>
-</li>
-      <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.Bypass.decode">decode() (compressai_vision.codecs.Bypass method)</a>
-
-      <ul>
-        <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.VTM.decode">(compressai_vision.codecs.VTM method)</a>
-</li>
-        <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.x264.decode">(compressai_vision.codecs.x264 method)</a>
-</li>
-      </ul></li>
-      <li><a href="compressai_vision/model_wrappers.html#compressai_vision.model_wrappers.BaseWrapper.deeper_features_for_accuracy_proxy">deeper_features_for_accuracy_proxy() (compressai_vision.model_wrappers.BaseWrapper method)</a>
-
-      <ul>
-        <li><a href="compressai_vision/model_wrappers.html#compressai_vision.model_wrappers.jde_1088x608.deeper_features_for_accuracy_proxy">(compressai_vision.model_wrappers.jde_1088x608 method)</a>
-</li>
-      </ul></li>
-      <li><a href="compressai_vision/datasets.html#compressai_vision.datasets.DefaultDataset">DefaultDataset (class in compressai_vision.datasets)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/pipelines/fo_vcm/conversion.html#compressai_vision.pipelines.fo_vcm.conversion.detectron251">detectron251() (in module compressai_vision.pipelines.fo_vcm.conversion)</a>
-
-      <ul>
-        <li><a href="compressai_vision/pipelines/fo_vcm/conversion.html#compressai_vision.pipelines.fo_vcm.conversion.detectron2.detectron251">(in module compressai_vision.pipelines.fo_vcm.conversion.detectron2)</a>
-</li>
-      </ul></li>
-      <li><a href="compressai_vision/datasets.html#compressai_vision.datasets.Detectron2Dataset">Detectron2Dataset (class in compressai_vision.datasets)</a>
-</li>
-      <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.BaseEvaluator.digest">digest() (compressai_vision.evaluators.BaseEvaluator method)</a>
-
-      <ul>
-        <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.COCOEVal.digest">(compressai_vision.evaluators.COCOEVal method)</a>
-</li>
-        <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.MOT_JDE_Eval.digest">(compressai_vision.evaluators.MOT_JDE_Eval method)</a>
-</li>
-        <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.OpenImagesChallengeEval.digest">(compressai_vision.evaluators.OpenImagesChallengeEval method)</a>
-</li>
-      </ul></li>
-      <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.MOT_JDE_Eval.digest_summary">digest_summary() (compressai_vision.evaluators.MOT_JDE_Eval static method)</a>
-</li>
-      <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#compressai_vision.pipelines.fo_vcm.pipeline.vtm.VTMEncoderDecoder.dump">dump() (compressai_vision.pipelines.fo_vcm.pipeline.vtm.VTMEncoderDecoder method)</a>
-</li>
-      <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.VTM.dump_fpn_sizes_json">dump_fpn_sizes_json() (compressai_vision.codecs.VTM method)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="E">E</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.Bypass.encode">encode() (compressai_vision.codecs.Bypass method)</a>
-
-      <ul>
-        <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.VTM.encode">(compressai_vision.codecs.VTM method)</a>
-</li>
-        <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.x264.encode">(compressai_vision.codecs.x264 method)</a>
-</li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#compressai_vision.pipelines.fo_vcm.pipeline.base.EncoderDecoder">EncoderDecoder (class in compressai_vision.pipelines.fo_vcm.pipeline.base)</a>
-</li>
-      <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.Bypass.eval_encode_type">eval_encode_type (compressai_vision.codecs.Bypass property)</a>
-
-      <ul>
-        <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.VTM.eval_encode_type">(compressai_vision.codecs.VTM property)</a>
-</li>
-        <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.x264.eval_encode_type">(compressai_vision.codecs.x264 property)</a>
-</li>
-      </ul></li>
-  </ul></td>
-</tr></table>
-
-<h2 id="F">F</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/model_wrappers.html#compressai_vision.model_wrappers.faster_rcnn_R_50_FPN_3x">faster_rcnn_R_50_FPN_3x (class in compressai_vision.model_wrappers)</a>
-</li>
-      <li><a href="compressai_vision/model_wrappers.html#compressai_vision.model_wrappers.faster_rcnn_X_101_32x8d_FPN_3x">faster_rcnn_X_101_32x8d_FPN_3x (class in compressai_vision.model_wrappers)</a>
-</li>
-      <li><a href="compressai_vision/model_wrappers.html#compressai_vision.model_wrappers.BaseWrapper.features_to_output">features_to_output() (compressai_vision.model_wrappers.BaseWrapper method)</a>
-
-      <ul>
-        <li><a href="compressai_vision/model_wrappers.html#compressai_vision.model_wrappers.jde_1088x608.features_to_output">(compressai_vision.model_wrappers.jde_1088x608 method)</a>
-</li>
-      </ul></li>
-      <li><a href="compressai_vision/pipelines/fo_vcm/conversion.html#compressai_vision.pipelines.fo_vcm.conversion.findLabels">findLabels() (in module compressai_vision.pipelines.fo_vcm.conversion)</a>
-
-      <ul>
-        <li><a href="compressai_vision/pipelines/fo_vcm/conversion.html#compressai_vision.pipelines.fo_vcm.conversion.detectron2.findLabels">(in module compressai_vision.pipelines.fo_vcm.conversion.detectron2)</a>
-</li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/pipelines/fo_vcm/conversion.html#compressai_vision.pipelines.fo_vcm.conversion.detectron2.findVideoLabels">findVideoLabels() (in module compressai_vision.pipelines.fo_vcm.conversion.detectron2)</a>
-</li>
-      <li><a href="compressai_vision/pipelines/fo_vcm/conversion.html#compressai_vision.pipelines.fo_vcm.conversion.FO2DetectronDataset">FO2DetectronDataset (class in compressai_vision.pipelines.fo_vcm.conversion)</a>
-
-      <ul>
-        <li><a href="compressai_vision/pipelines/fo_vcm/conversion.html#compressai_vision.pipelines.fo_vcm.conversion.detectron2.FO2DetectronDataset">(class in compressai_vision.pipelines.fo_vcm.conversion.detectron2)</a>
-</li>
-      </ul></li>
-      <li><a href="compressai_vision/model_wrappers.html#compressai_vision.model_wrappers.BaseWrapper.forward">forward() (compressai_vision.model_wrappers.BaseWrapper method)</a>
-
-      <ul>
-        <li><a href="compressai_vision/model_wrappers.html#compressai_vision.model_wrappers.jde_1088x608.forward">(compressai_vision.model_wrappers.jde_1088x608 method)</a>
-</li>
-      </ul></li>
-  </ul></td>
-</tr></table>
-
-<h2 id="G">G</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.BaseEvaluator.get_coco_eval_info_name">get_coco_eval_info_name() (compressai_vision.evaluators.BaseEvaluator static method)</a>
-</li>
-      <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.VTM.get_decode_cmd">get_decode_cmd() (compressai_vision.codecs.VTM method)</a>
-
-      <ul>
-        <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.x264.get_decode_cmd">(compressai_vision.codecs.x264 method)</a>
-</li>
-      </ul></li>
-      <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.HM.get_encode_cmd">get_encode_cmd() (compressai_vision.codecs.HM method)</a>
-
-      <ul>
-        <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.VTM.get_encode_cmd">(compressai_vision.codecs.VTM method)</a>
-</li>
-        <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.VVENC.get_encode_cmd">(compressai_vision.codecs.VVENC method)</a>
-</li>
-        <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.x264.get_encode_cmd">(compressai_vision.codecs.x264 method)</a>
-</li>
-        <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.x265.get_encode_cmd">(compressai_vision.codecs.x265 method)</a>
-</li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/model_wrappers.html#compressai_vision.model_wrappers.jde_1088x608.get_input_size">get_input_size() (compressai_vision.model_wrappers.jde_1088x608 method)</a>
-</li>
-      <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.BaseEvaluator.get_jde_eval_info_name">get_jde_eval_info_name() (compressai_vision.evaluators.BaseEvaluator static method)</a>
-</li>
-      <li><a href="compressai_vision/datasets.html#compressai_vision.datasets.Detectron2Dataset.get_org_mapper_func">get_org_mapper_func() (compressai_vision.datasets.Detectron2Dataset method)</a>
-
-      <ul>
-        <li><a href="compressai_vision/datasets.html#compressai_vision.datasets.TrackingDataset.get_org_mapper_func">(compressai_vision.datasets.TrackingDataset method)</a>
-</li>
-      </ul></li>
-      <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.VTM.get_parcat_cmd">get_parcat_cmd() (compressai_vision.codecs.VTM method)</a>
-</li>
-      <li><a href="compressai_vision/datasets.html#compressai_vision.datasets.get_seq_info">get_seq_info() (in module compressai_vision.datasets)</a>
-</li>
-      <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#compressai_vision.pipelines.fo_vcm.pipeline.vtm.VTMEncoderDecoder.getCacheDir">getCacheDir() (compressai_vision.pipelines.fo_vcm.pipeline.vtm.VTMEncoderDecoder method)</a>
-</li>
-      <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#compressai_vision.pipelines.fo_vcm.pipeline.base.EncoderDecoder.getMetrics">getMetrics() (compressai_vision.pipelines.fo_vcm.pipeline.base.EncoderDecoder method)</a>
-
-      <ul>
-        <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#compressai_vision.pipelines.fo_vcm.pipeline.compressai.CompressAIEncoderDecoder.getMetrics">(compressai_vision.pipelines.fo_vcm.pipeline.compressai.CompressAIEncoderDecoder method)</a>
-</li>
-      </ul></li>
-  </ul></td>
-</tr></table>
-
-<h2 id="H">H</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.HM">HM (class in compressai_vision.codecs)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="I">I</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/pipelines/fo_vcm/conversion.html#compressai_vision.pipelines.fo_vcm.conversion.imageIdFileList">imageIdFileList() (in module compressai_vision.pipelines.fo_vcm.conversion)</a>
-</li>
-      <li><a href="compressai_vision/pipelines/remote_inference.html#compressai_vision.pipelines.remote_inference.ImageRemoteInference">ImageRemoteInference (class in compressai_vision.pipelines.remote_inference)</a>
-</li>
-      <li><a href="compressai_vision/pipelines/split_inference.html#compressai_vision.pipelines.split_inference.ImageSplitInference">ImageSplitInference (class in compressai_vision.pipelines.split_inference)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/datasets.html#compressai_vision.datasets.DataCatalog.imgs_folder_path">imgs_folder_path (compressai_vision.datasets.DataCatalog property)</a>
-</li>
-      <li><a href="compressai_vision/model_wrappers.html#compressai_vision.model_wrappers.BaseWrapper.input_to_features">input_to_features() (compressai_vision.model_wrappers.BaseWrapper method)</a>
-
-      <ul>
-        <li><a href="compressai_vision/model_wrappers.html#compressai_vision.model_wrappers.jde_1088x608.input_to_features">(compressai_vision.model_wrappers.jde_1088x608 method)</a>
-</li>
-      </ul></li>
-  </ul></td>
-</tr></table>
-
-<h2 id="J">J</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/model_wrappers.html#compressai_vision.model_wrappers.jde_1088x608">jde_1088x608 (class in compressai_vision.model_wrappers)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="M">M</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/model_wrappers.html#compressai_vision.model_wrappers.mask_rcnn_R_50_FPN_3x">mask_rcnn_R_50_FPN_3x (class in compressai_vision.model_wrappers)</a>
-</li>
-      <li><a href="compressai_vision/model_wrappers.html#compressai_vision.model_wrappers.mask_rcnn_X_101_32x8d_FPN_3x">mask_rcnn_X_101_32x8d_FPN_3x (class in compressai_vision.model_wrappers)</a>
-</li>
-      <li><a href="compressai_vision/model_wrappers.html#compressai_vision.model_wrappers.BaseWrapper.model_cfg_path">model_cfg_path (compressai_vision.model_wrappers.BaseWrapper property)</a>
-</li>
-      <li>
-    module
-
-      <ul>
-        <li><a href="compressai_vision/codecs.html#module-compressai_vision.codecs">compressai_vision.codecs</a>
-</li>
-        <li><a href="compressai_vision/datasets.html#module-compressai_vision.datasets">compressai_vision.datasets</a>
-</li>
-        <li><a href="compressai_vision/evaluators.html#module-compressai_vision.evaluators">compressai_vision.evaluators</a>
-</li>
-        <li><a href="compressai_vision/model_wrappers.html#module-compressai_vision.model_wrappers">compressai_vision.model_wrappers</a>
-</li>
-        <li><a href="compressai_vision/pipelines/fo_vcm/conversion.html#module-compressai_vision.pipelines.fo_vcm.conversion">compressai_vision.pipelines.fo_vcm.conversion</a>
-</li>
-        <li><a href="compressai_vision/pipelines/fo_vcm/conversion.html#module-compressai_vision.pipelines.fo_vcm.conversion.detectron2">compressai_vision.pipelines.fo_vcm.conversion.detectron2</a>
-</li>
-        <li><a href="compressai_vision/pipelines/fo_vcm/conversion.html#module-compressai_vision.pipelines.fo_vcm.conversion.sfu_hw_objects_v1">compressai_vision.pipelines.fo_vcm.conversion.sfu_hw_objects_v1</a>
-</li>
-        <li><a href="compressai_vision/pipelines/fo_vcm/conversion.html#module-compressai_vision.pipelines.fo_vcm.conversion.tvd_object_tracking_v1">compressai_vision.pipelines.fo_vcm.conversion.tvd_object_tracking_v1</a>
-</li>
-        <li><a href="compressai_vision/pipelines/fo_vcm/fo.html#module-compressai_vision.pipelines.fo_vcm.fo">compressai_vision.pipelines.fo_vcm.fo</a>
-</li>
-        <li><a href="compressai_vision/pipelines/fo_vcm/fo.html#module-compressai_vision.pipelines.fo_vcm.fo.predict">compressai_vision.pipelines.fo_vcm.fo.predict</a>
-</li>
-        <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#module-compressai_vision.pipelines.fo_vcm.pipeline">compressai_vision.pipelines.fo_vcm.pipeline</a>
-</li>
-        <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#module-compressai_vision.pipelines.fo_vcm.pipeline.base">compressai_vision.pipelines.fo_vcm.pipeline.base</a>
-</li>
-        <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#module-compressai_vision.pipelines.fo_vcm.pipeline.compressai">compressai_vision.pipelines.fo_vcm.pipeline.compressai</a>
-</li>
-        <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#module-compressai_vision.pipelines.fo_vcm.pipeline.vtm">compressai_vision.pipelines.fo_vcm.pipeline.vtm</a>
-</li>
-        <li><a href="compressai_vision/pipelines/remote_inference.html#module-compressai_vision.pipelines.remote_inference">compressai_vision.pipelines.remote_inference</a>
-</li>
-        <li><a href="compressai_vision/pipelines/split_inference.html#module-compressai_vision.pipelines.split_inference">compressai_vision.pipelines.split_inference</a>
-</li>
-        <li><a href="compressai_vision/registry.html#module-compressai_vision.registry">compressai_vision.registry</a>
-</li>
-        <li><a href="compressai_vision/registry.html#module-compressai_vision.registry.registry">compressai_vision.registry.registry</a>
-</li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.MOT_HiEve_Eval.mot_eval">mot_eval() (compressai_vision.evaluators.MOT_HiEve_Eval method)</a>
-
-      <ul>
-        <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.MOT_JDE_Eval.mot_eval">(compressai_vision.evaluators.MOT_JDE_Eval method)</a>
-</li>
-        <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.MOT_TVD_Eval.mot_eval">(compressai_vision.evaluators.MOT_TVD_Eval method)</a>
-</li>
-      </ul></li>
-      <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.MOT_HiEve_Eval">MOT_HiEve_Eval (class in compressai_vision.evaluators)</a>
-</li>
-      <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.MOT_JDE_Eval">MOT_JDE_Eval (class in compressai_vision.evaluators)</a>
-</li>
-      <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.MOT_TVD_Eval">MOT_TVD_Eval (class in compressai_vision.evaluators)</a>
-</li>
-      <li><a href="compressai_vision/pipelines/fo_vcm/conversion.html#compressai_vision.pipelines.fo_vcm.conversion.MPEGVCMToOpenImageV6">MPEGVCMToOpenImageV6() (in module compressai_vision.pipelines.fo_vcm.conversion)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="O">O</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.OpenImagesChallengeEval">OpenImagesChallengeEval (class in compressai_vision.evaluators)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="P">P</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/model_wrappers.html#compressai_vision.model_wrappers.BaseWrapper.pretrained_weight_path">pretrained_weight_path (compressai_vision.model_wrappers.BaseWrapper property)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="Q">Q</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.Bypass.qp_value">qp_value (compressai_vision.codecs.Bypass property)</a>
-
-      <ul>
-        <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.VTM.qp_value">(compressai_vision.codecs.VTM property)</a>
-</li>
-        <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.x264.qp_value">(compressai_vision.codecs.x264 property)</a>
-</li>
-      </ul></li>
-  </ul></td>
-</tr></table>
-
-<h2 id="R">R</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/pipelines/fo_vcm/conversion.html#compressai_vision.pipelines.fo_vcm.conversion.sfu_hw_objects_v1.read_detections">read_detections() (in module compressai_vision.pipelines.fo_vcm.conversion.sfu_hw_objects_v1)</a>
-
-      <ul>
-        <li><a href="compressai_vision/pipelines/fo_vcm/conversion.html#compressai_vision.pipelines.fo_vcm.conversion.tvd_object_tracking_v1.read_detections">(in module compressai_vision.pipelines.fo_vcm.conversion.tvd_object_tracking_v1)</a>
-</li>
-      </ul></li>
-      <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.VTM.read_min_max_values">read_min_max_values() (compressai_vision.codecs.VTM method)</a>
-</li>
-      <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.VTM.read_n_bit">read_n_bit() (compressai_vision.codecs.VTM method)</a>
-</li>
-      <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.VTM.read_packed_frame_size">read_packed_frame_size() (compressai_vision.codecs.VTM method)</a>
-</li>
-      <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.VTM.read_rft_chSize">read_rft_chSize() (compressai_vision.codecs.VTM method)</a>
-</li>
-      <li><a href="compressai_vision/pipelines/fo_vcm/conversion.html#compressai_vision.pipelines.fo_vcm.conversion.sfu_hw_objects_v1.register">register() (in module compressai_vision.pipelines.fo_vcm.conversion.sfu_hw_objects_v1)</a>
-
-      <ul>
-        <li><a href="compressai_vision/pipelines/fo_vcm/conversion.html#compressai_vision.pipelines.fo_vcm.conversion.tvd_object_tracking_v1.register">(in module compressai_vision.pipelines.fo_vcm.conversion.tvd_object_tracking_v1)</a>
-</li>
-      </ul></li>
-      <li><a href="compressai_vision/registry.html#compressai_vision.registry.registry.register_codec">register_codec() (in module compressai_vision.registry.registry)</a>
-</li>
-      <li><a href="compressai_vision/registry.html#compressai_vision.registry.registry.register_datacatalog">register_datacatalog() (in module compressai_vision.registry.registry)</a>
-</li>
-      <li><a href="compressai_vision/registry.html#compressai_vision.registry.registry.register_dataset">register_dataset() (in module compressai_vision.registry.registry)</a>
-</li>
-      <li><a href="compressai_vision/registry.html#compressai_vision.registry.registry.register_evaluator">register_evaluator() (in module compressai_vision.registry.registry)</a>
-</li>
-      <li><a href="compressai_vision/registry.html#compressai_vision.registry.registry.register_pipeline">register_pipeline() (in module compressai_vision.registry.registry)</a>
-</li>
-      <li><a href="compressai_vision/registry.html#compressai_vision.registry.registry.register_vision_model">register_vision_model() (in module compressai_vision.registry.registry)</a>
-</li>
-      <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#compressai_vision.pipelines.fo_vcm.pipeline.vtm.removeFileIf">removeFileIf() (in module compressai_vision.pipelines.fo_vcm.pipeline.vtm)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.BaseEvaluator.reset">reset() (compressai_vision.evaluators.BaseEvaluator method)</a>
-
-      <ul>
-        <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.COCOEVal.reset">(compressai_vision.evaluators.COCOEVal method)</a>
-</li>
-        <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.MOT_JDE_Eval.reset">(compressai_vision.evaluators.MOT_JDE_Eval method)</a>
-</li>
-        <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.OpenImagesChallengeEval.reset">(compressai_vision.evaluators.OpenImagesChallengeEval method)</a>
-</li>
-        <li><a href="compressai_vision/model_wrappers.html#compressai_vision.model_wrappers.jde_1088x608.reset">(compressai_vision.model_wrappers.jde_1088x608 method)</a>
-</li>
-        <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#compressai_vision.pipelines.fo_vcm.pipeline.base.EncoderDecoder.reset">(compressai_vision.pipelines.fo_vcm.pipeline.base.EncoderDecoder method)</a>
-</li>
-        <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#compressai_vision.pipelines.fo_vcm.pipeline.base.VoidEncoderDecoder.reset">(compressai_vision.pipelines.fo_vcm.pipeline.base.VoidEncoderDecoder method)</a>
-</li>
-        <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#compressai_vision.pipelines.fo_vcm.pipeline.compressai.CompressAIEncoderDecoder.reset">(compressai_vision.pipelines.fo_vcm.pipeline.compressai.CompressAIEncoderDecoder method)</a>
-</li>
-        <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#compressai_vision.pipelines.fo_vcm.pipeline.vtm.VTMEncoderDecoder.reset">(compressai_vision.pipelines.fo_vcm.pipeline.vtm.VTMEncoderDecoder method)</a>
-</li>
-      </ul></li>
-      <li><a href="compressai_vision/model_wrappers.html#compressai_vision.model_wrappers.jde_1088x608.reshape_feature_pyramid_to_frame">reshape_feature_pyramid_to_frame() (compressai_vision.model_wrappers.jde_1088x608 method)</a>
-</li>
-      <li><a href="compressai_vision/model_wrappers.html#compressai_vision.model_wrappers.jde_1088x608.reshape_frame_to_feature_pyramid">reshape_frame_to_feature_pyramid() (compressai_vision.model_wrappers.jde_1088x608 method)</a>
-</li>
-      <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.BaseEvaluator.results">results() (compressai_vision.evaluators.BaseEvaluator method)</a>
-
-      <ul>
-        <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.COCOEVal.results">(compressai_vision.evaluators.COCOEVal method)</a>
-</li>
-        <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.MOT_JDE_Eval.results">(compressai_vision.evaluators.MOT_JDE_Eval method)</a>
-</li>
-        <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.OpenImagesChallengeEval.results">(compressai_vision.evaluators.OpenImagesChallengeEval method)</a>
-</li>
-      </ul></li>
-  </ul></td>
-</tr></table>
-
-<h2 id="S">S</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/datasets.html#compressai_vision.datasets.DataCatalog.seqinfo_path">seqinfo_path (compressai_vision.datasets.DataCatalog property)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/pipelines/fo_vcm/conversion.html#compressai_vision.pipelines.fo_vcm.conversion.sfu_hw_objects_v1.sfu_txt_files_to_list">sfu_txt_files_to_list() (in module compressai_vision.pipelines.fo_vcm.conversion.sfu_hw_objects_v1)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="T">T</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#compressai_vision.pipelines.fo_vcm.pipeline.compressai.CompressAIEncoderDecoder.toByte">toByte (compressai_vision.pipelines.fo_vcm.pipeline.compressai.CompressAIEncoderDecoder attribute)</a>
-</li>
-      <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#compressai_vision.pipelines.fo_vcm.pipeline.compressai.CompressAIEncoderDecoder.toFloat">toFloat (compressai_vision.pipelines.fo_vcm.pipeline.compressai.CompressAIEncoderDecoder attribute)</a>
-</li>
-      <li><a href="compressai_vision/datasets.html#compressai_vision.datasets.TrackingDataset">TrackingDataset (class in compressai_vision.datasets)</a>
-</li>
-      <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.Bypass.training">training (compressai_vision.codecs.Bypass attribute)</a>
-
-      <ul>
-        <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.HM.training">(compressai_vision.codecs.HM attribute)</a>
-</li>
-        <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.VTM.training">(compressai_vision.codecs.VTM attribute)</a>
-</li>
-        <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.VVENC.training">(compressai_vision.codecs.VVENC attribute)</a>
-</li>
-        <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.x264.training">(compressai_vision.codecs.x264 attribute)</a>
-</li>
-        <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.x265.training">(compressai_vision.codecs.x265 attribute)</a>
-</li>
-        <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.BaseEvaluator.training">(compressai_vision.evaluators.BaseEvaluator attribute)</a>
-</li>
-        <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.COCOEVal.training">(compressai_vision.evaluators.COCOEVal attribute)</a>
-</li>
-        <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.MOT_HiEve_Eval.training">(compressai_vision.evaluators.MOT_HiEve_Eval attribute)</a>
-</li>
-        <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.MOT_JDE_Eval.training">(compressai_vision.evaluators.MOT_JDE_Eval attribute)</a>
-</li>
-        <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.MOT_TVD_Eval.training">(compressai_vision.evaluators.MOT_TVD_Eval attribute)</a>
-</li>
-        <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.OpenImagesChallengeEval.training">(compressai_vision.evaluators.OpenImagesChallengeEval attribute)</a>
-</li>
-        <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.YOLOEval.training">(compressai_vision.evaluators.YOLOEval attribute)</a>
-</li>
-        <li><a href="compressai_vision/model_wrappers.html#compressai_vision.model_wrappers.BaseWrapper.training">(compressai_vision.model_wrappers.BaseWrapper attribute)</a>
-</li>
-        <li><a href="compressai_vision/model_wrappers.html#compressai_vision.model_wrappers.faster_rcnn_R_50_FPN_3x.training">(compressai_vision.model_wrappers.faster_rcnn_R_50_FPN_3x attribute)</a>
-</li>
-        <li><a href="compressai_vision/model_wrappers.html#compressai_vision.model_wrappers.faster_rcnn_X_101_32x8d_FPN_3x.training">(compressai_vision.model_wrappers.faster_rcnn_X_101_32x8d_FPN_3x attribute)</a>
-</li>
-        <li><a href="compressai_vision/model_wrappers.html#compressai_vision.model_wrappers.jde_1088x608.training">(compressai_vision.model_wrappers.jde_1088x608 attribute)</a>
-</li>
-        <li><a href="compressai_vision/model_wrappers.html#compressai_vision.model_wrappers.mask_rcnn_R_50_FPN_3x.training">(compressai_vision.model_wrappers.mask_rcnn_R_50_FPN_3x attribute)</a>
-</li>
-        <li><a href="compressai_vision/model_wrappers.html#compressai_vision.model_wrappers.mask_rcnn_X_101_32x8d_FPN_3x.training">(compressai_vision.model_wrappers.mask_rcnn_X_101_32x8d_FPN_3x attribute)</a>
-</li>
-        <li><a href="compressai_vision/pipelines/remote_inference.html#compressai_vision.pipelines.remote_inference.ImageRemoteInference.training">(compressai_vision.pipelines.remote_inference.ImageRemoteInference attribute)</a>
-</li>
-        <li><a href="compressai_vision/pipelines/remote_inference.html#compressai_vision.pipelines.remote_inference.VideoRemoteInference.training">(compressai_vision.pipelines.remote_inference.VideoRemoteInference attribute)</a>
-</li>
-        <li><a href="compressai_vision/pipelines/split_inference.html#compressai_vision.pipelines.split_inference.ImageSplitInference.training">(compressai_vision.pipelines.split_inference.ImageSplitInference attribute)</a>
-</li>
-        <li><a href="compressai_vision/pipelines/split_inference.html#compressai_vision.pipelines.split_inference.VideoSplitInference.training">(compressai_vision.pipelines.split_inference.VideoSplitInference attribute)</a>
-</li>
-      </ul></li>
-  </ul></td>
-</tr></table>
-
-<h2 id="V">V</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/pipelines/fo_vcm/conversion.html#compressai_vision.pipelines.fo_vcm.conversion.sfu_hw_objects_v1.video_convert">video_convert() (in module compressai_vision.pipelines.fo_vcm.conversion.sfu_hw_objects_v1)</a>
-</li>
-      <li><a href="compressai_vision/pipelines/remote_inference.html#compressai_vision.pipelines.remote_inference.VideoRemoteInference">VideoRemoteInference (class in compressai_vision.pipelines.remote_inference)</a>
-</li>
-      <li><a href="compressai_vision/pipelines/split_inference.html#compressai_vision.pipelines.split_inference.VideoSplitInference">VideoSplitInference (class in compressai_vision.pipelines.split_inference)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#compressai_vision.pipelines.fo_vcm.pipeline.base.VoidEncoderDecoder">VoidEncoderDecoder (class in compressai_vision.pipelines.fo_vcm.pipeline.base)</a>
-</li>
-      <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.VTM">VTM (class in compressai_vision.codecs)</a>
-</li>
-      <li><a href="compressai_vision/pipelines/fo_vcm/pipeline.html#compressai_vision.pipelines.fo_vcm.pipeline.vtm.VTMEncoderDecoder">VTMEncoderDecoder (class in compressai_vision.pipelines.fo_vcm.pipeline.vtm)</a>
-</li>
-      <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.VVENC">VVENC (class in compressai_vision.codecs)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="W">W</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.VTM.write_min_max_values">write_min_max_values() (compressai_vision.codecs.VTM method)</a>
-</li>
-      <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.VTM.write_n_bit">write_n_bit() (compressai_vision.codecs.VTM method)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.VTM.write_packed_frame_size">write_packed_frame_size() (compressai_vision.codecs.VTM method)</a>
-</li>
-      <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.BaseEvaluator.write_results">write_results() (compressai_vision.evaluators.BaseEvaluator method)</a>
-</li>
-      <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.VTM.write_rft_chSize">write_rft_chSize() (compressai_vision.codecs.VTM method)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="X">X</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.x264">x264 (class in compressai_vision.codecs)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/codecs.html#compressai_vision.codecs.x265">x265 (class in compressai_vision.codecs)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="Y">Y</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="compressai_vision/evaluators.html#compressai_vision.evaluators.YOLOEval">YOLOEval (class in compressai_vision.evaluators)</a>
-</li>
-  </ul></td>
-</tr></table>
-
 
 
                 </article>
@@ -1014,12 +270,16 @@ document.write(`
 
               
               
-              
-              
-                <footer class="prev-next-footer">
+                <footer class="bd-footer-article">
                   
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -1042,7 +302,6 @@ By InterDigital Communications, Inc.
   
   <div class="footer-item">
     
-
   <p class="copyright">
     
       © Copyright 2023, InterDigital Communications, Inc..
@@ -1069,8 +328,8 @@ By InterDigital Communications, Inc.
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>
