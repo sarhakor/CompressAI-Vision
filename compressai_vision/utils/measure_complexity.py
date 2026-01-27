@@ -120,8 +120,44 @@ def calc_complexity_nn_part2_plyr(vision_model, data, dec_features):
 
     return kmacs_sum, pixels
 
+#import torch
+import torch.nn as nn
+from fvcore.nn import FlopCountAnalysis, flop_count_table
+
+class FPNWrapper(nn.Module):
+    # Acts as an equivalent of ptflops `input_constructor` for fvcore,
+    # adapting the forward signature to a simple `model(x)` call.
+    def __init__(self, fpn, no_bottom_up=False):
+        super().__init__()
+        self.fpn = fpn
+        self.no_bottom_up = no_bottom_up
+
+    def forward(self, x):
+        # Explicitly fix forward arguments for fvcore-based FLOPs/MAC counting
+        return self.fpn(x, no_bottom_up=self.no_bottom_up)
 
 def measure_mac(partial_model, input_res, input_constructor):
+    # Wrap the model to adapt its forward signature for fvcore (similar to `input_constructor` in ptflops)
+    model = FPNWrapper(partial_model, no_bottom_up=False).eval() 
+    
+    # Create a dummy input tensor that matches the model's device and dtype
+    p = next(model.parameters())
+    x = torch.randn(1, *input_res, device=p.device, dtype=p.dtype)
+
+    # Run a forward pass to collect operator-level FLOPs
+    with torch.no_grad():
+        flops = FlopCountAnalysis(model, x)
+        
+    total_flops = flops.total()          # Total FLOPs reported by fvcore (multiply + add are counted separately)
+    total_macs = total_flops / 2         # Convert FLOPs to MACs (commonly assuming 2 FLOPs per MAC)
+
+    print("NNpart1(MACs)=", total_macs)
+    print(flops.by_operator())          # Print FLOPs breakdown by ATen operator (e.g., aten::conv2d)
+    print(flop_count_table(flops))      # Print a formatted FLOPs table for readability
+
+    
+    """
+    # Previous MAC calculation method using ptflops
     macs, params = get_model_complexity_info(
         partial_model,
         input_res=input_res,
@@ -130,7 +166,10 @@ def measure_mac(partial_model, input_res, input_constructor):
         print_per_layer_stat=False,
         verbose=False,
     )
+    
     return macs / 1_000, params
+    """
+    return total_macs, None
 
 
 class dummy:
