@@ -293,14 +293,17 @@ def measure_kmacs(module: nn.Module, inputs, tag: str = None) -> float:
             "aten::conv2d": conv_flop_jit,
             "aten::_convolution": conv_flop_jit,
             "aten::cudnn_convolution": conv_flop_jit,
-            # element-wise ops
+            # element-wise ops (out-of-place)
             "aten::add": elemwise_flop_jit,
+            "aten::add_": elemwise_flop_jit,
             "aten::mul": elemwise_flop_jit,
             "aten::div": elemwise_flop_jit,
             "aten::abs": elemwise_flop_jit,
             "aten::reciprocal": elemwise_flop_jit,
             "aten::round": elemwise_flop_jit,
-            "aten::leaky_relu": elemwise_flop_jit,
+            "aten::leaky_relu": elemwise_flop_jit,            
+            # pooling
+            "aten::max_pool2d": max_pool2d_flop_jit,
         })
         total_flops = flops.total()
         
@@ -558,3 +561,65 @@ def elemwise_flop_jit(inputs, outputs):
     # outputs can be Tensor or tuple/list of Tensors
     out = outputs[0] if isinstance(outputs, (tuple, list)) else outputs
     return prod(get_shape(out))  # 1 flop per output element (approx.)
+
+def max_pool2d_flop_jit(inputs, outputs):
+    """
+    Approximate FLOPs for max_pool2d.
+
+    Convention:
+    - For each output element, max-pool performs (kH*kW - 1) comparisons.
+    - We count comparisons as 1 FLOP each (approx).
+    """
+    # aten::max_pool2d signature (typical):
+    # inputs = [x, kernel_size, stride, padding, dilation, ceil_mode]
+    x = inputs[0]
+    y = outputs[0]
+
+    out_numel = _value_numel(y)
+    if out_numel == 0:
+        return 0
+
+    k = _to_ivalue(inputs[1], default=None)  # could be int or (kH,kW) or list
+    if isinstance(k, int):
+        kH, kW = k, k
+    elif isinstance(k, (list, tuple)) and len(k) == 2:
+        kH, kW = int(k[0]), int(k[1])
+    else:
+        # Fallback: if kernel size is not statically available, assume 1x1
+        kH, kW = 1, 1
+
+    # comparisons per output = kH*kW - 1
+    return int(out_numel) * max(int(kH) * int(kW) - 1, 0)
+
+def _value_sizes(v):
+    """
+    Get static tensor sizes from torch._C.Value (JIT IR value).
+    Returns a list like [N, C, H, W] or None if unknown.
+    """
+    try:
+        t = v.type()
+        if hasattr(t, "sizes") and t.sizes() is not None:
+            return list(t.sizes())
+    except Exception:
+        pass
+    return None
+
+def _value_numel(v):
+    sizes = _value_sizes(v)
+    if not sizes or any(s is None for s in sizes):
+        return 0
+    n = 1
+    for s in sizes:
+        n *= int(s)
+    return n
+
+def _to_ivalue(v, default=None):
+    """
+    Try to materialize constant from torch._C.Value if it is a constant.
+    Works for many prim::Constant-derived Values.
+    """
+    try:
+        return v.toIValue()
+    except Exception:
+        return default
+
