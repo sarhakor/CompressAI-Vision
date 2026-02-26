@@ -43,18 +43,6 @@ def calc_complexity_nn_part2_dn53(vision_model, dec_features):
         raise NotImplementedError("Image-task path is not implemented yet for DN53 complexity.")
     else:  # video task
         x = dec_features["data"]
-        #feats_dict = {
-        #    k: v.unsqueeze(0).to(device=device)
-        #    for k, v in zip(vision_model.split_layer_list, x.values())
-        #}
-        # Build features dict using x.items() (do NOT rely on dict.values() ordering)
-        #feats_dict = {}
-        #for k, v in x.items():
-        #    kk = int(k)
-        #    vv = v
-        #    if vv.dim() == 3:      # (C,H,W) -> (1,C,H,W)
-        #        vv = vv.unsqueeze(0)
-        #    feats_dict[kk] = vv.to(device=device)
 
     # NN-part2 (Darknet backbone only): store features in wrapper, pass tensor-only dummy input to fvcore
     partial_model = DarknetNNPart2BackboneOnlyFvcoreWrapper(vision_model.darknet, vision_model.features_at_splits).eval()
@@ -62,8 +50,6 @@ def calc_complexity_nn_part2_dn53(vision_model, dec_features):
     # fvcore input must be Tensor (wrapper overwrites internal 'x' from stored features)
     x_dummy = next(iter(x.values()))
     # fvcore input must be a Tensor; pick a deterministic dummy tensor
-    #first_k = min(feats_dict.keys())
-    #x_dummy = feats_dict[first_k]
     kmacs = measure_kmacs(partial_model, x_dummy)
 
     pixels = sum(
@@ -492,6 +478,7 @@ class DarknetNNPart2BackboneOnlyFvcoreWrapper(nn.Module):
         super().__init__()
         self.darknet = darknet
         self.features = features  # dict[int, Tensor]
+        
         self.is_nn_part1 = False  # fixed for this wrapper
 
     def forward(self, x_dummy: torch.Tensor) -> torch.Tensor:
@@ -506,10 +493,6 @@ class DarknetNNPart2BackboneOnlyFvcoreWrapper(nn.Module):
         output = []  # not used (we skip yolo), kept for structural similarity
         had_yolo = False
 
-        # If no injected features are provided, return a tensor to keep tracing alive
-        if len(features) == 0:
-            return x_dummy
-
         max_id = max(features.keys())
 
         # Match original nn-part2 logic for sidx/eidx and pre-filling layer_outputs
@@ -518,37 +501,26 @@ class DarknetNNPart2BackboneOnlyFvcoreWrapper(nn.Module):
 
             # Pre-fill layer_outputs[0:sidx] with injected features or None
             # Also pick a valid initial x from the earliest available injected feature
-            x_init = None
             for idx in range(0, sidx):
                 if idx not in features:
                     layer_outputs.append(None)
                 else:
-                    x_i = features[idx]
-                    layer_outputs.append(x_i)
-                    if x_init is None:
-                        x_init = x_i
-
-            # Fallback: if no feature existed in [0:sidx), use the smallest-key feature
-            if x_init is None:
-                x_init = features[min(features.keys())]
-
+                    x = features[idx]
+                    layer_outputs.append(x)
         else:
             sidx = min(features.keys())
-            x_init = features[sidx]
 
         eidx = len(module_list)
-
         # IMPORTANT: do NOT start from x_dummy (can cause channel mismatch before injection)
-        x = x_init
 
         # Main loop (same structure as original, but assumes nn-part2 only)
         for i, (module_def, module) in enumerate(
             zip(module_defs[sidx:eidx], module_list[sidx:eidx])
         ):
             nn_idx = i + sidx
-
+                        
             # --- Feature injection (same as original) ---
-            if nn_idx in features:
+            if nn_idx in features.keys():
                 x = features[nn_idx]
                 layer_outputs.append(x)
                 features.pop(nn_idx)
@@ -558,8 +530,6 @@ class DarknetNNPart2BackboneOnlyFvcoreWrapper(nn.Module):
                 continue
 
             mtype = module_def["type"]
-            # 왜 75번째 레이어에서, feature[74]의 채널수는 1024인데, 
-            # 1024가 아니라 256크기의 feature를 받았다고 하는걸까?
             if mtype in ["convolutional", "upsample", "maxpool"]:
                 x = module(x)
 
@@ -575,8 +545,7 @@ class DarknetNNPart2BackboneOnlyFvcoreWrapper(nn.Module):
                 x = layer_outputs[-1] + layer_outputs[layer_i]
 
             elif mtype == "yolo":
-                # Skip YOLO heads for backbone-only FLOPs measurement.
-                # Keep the flag to preserve original control flow.
+                x = module[0](x, self.darknet.img_size) 
                 had_yolo = True
                 # Keep x unchanged
 
