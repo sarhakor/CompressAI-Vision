@@ -115,7 +115,15 @@ def calc_complexity_nn_part2_plyr(vision_model, data, dec_features):
         ),
     )
 
-    # ---------- 4) ROIHeads ----------
+    # ---------- 4) Measure sem_seg_head if available ----------
+    # Panoptic/Semantic models use sem_seg_head(x, None)
+    is_semseg = hasattr(vision_model, "sem_seg_head") and vision_model.sem_seg_head is not None
+    if is_semseg:
+        semseg_model = SemSegHeadFvcoreWrapper(vision_model.sem_seg_head).eval()
+        # IMPORTANT: pass dict as a single positional arg
+        kmacs_sum += measure_kmacs(semseg_model, (feature_pyramid,))
+    
+    # ---------- 5) ROIHeads ----------
     # Run the proposal generator once to obtain actual proposals.
     # Only the image size is required for Detectron2, so a minimal dummy object is used.
     class _ImagesDummy:
@@ -128,7 +136,7 @@ def calc_complexity_nn_part2_plyr(vision_model, data, dec_features):
     with torch.no_grad():
         proposals, _ = vision_model.proposal_generator(images, feature_pyramid, None)
 
-    # ---------- 4-1) Measure box_head + box_predictor ----------
+    # ---------- 5-1) Measure box_head + box_predictor ----------
     # ROIAlign/Pooler is excluded from FLOPs due to ambiguity and potential CUDA/JIT issues.
     # Instead, pooled features are obtained once and only NN blocks are measured.
     if hasattr(vision_model, "roi_heads") and vision_model.roi_heads is not None:
@@ -152,8 +160,8 @@ def calc_complexity_nn_part2_plyr(vision_model, data, dec_features):
         box_head_model = BoxHeadPredictorFvcoreWrapper(roi_heads).eval()
         kmacs_sum += measure_kmacs(box_head_model, pooled)
 
-        # ---------- 4-2) Measure mask head if available ----------
-        if (
+        # ---------- 5-2) Measure mask head if available ----------
+        if (not is_semseg) and (
             hasattr(roi_heads, "mask_head")
             and roi_heads.mask_head is not None
             and hasattr(roi_heads, "mask_pooler")
@@ -322,6 +330,17 @@ def measure_kmacs(module: nn.Module, inputs, tag: str = None) -> float:
     name = tag or module.__class__.__name__
     print(f"[INFO] {name}: KMACs = {kmacs}")
     return kmacs
+
+class SemSegHeadFvcoreWrapper(nn.Module):
+    def __init__(self, sem_seg_head: nn.Module):
+        super().__init__()
+        self.sem_seg_head = sem_seg_head
+
+    def forward(self, x):
+        # detectron2 style: returns (sem_seg_results, losses) or similar
+        out = self.sem_seg_head(x, None)
+        return out[0] if isinstance(out, (tuple, list)) else out
+
 class RPNHeadOnlyFvcoreWrapper(nn.Module):
     """
     Wrapper for Detectron2 RPN to measure FLOPs only for the neural network part.
