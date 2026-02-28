@@ -166,11 +166,32 @@ def calc_complexity_nn_part2_plyr(vision_model, data, dec_features):
             and roi_heads.mask_head is not None
             and hasattr(roi_heads, "mask_pooler")
         ):
-            with torch.no_grad():
-                mask_pooled = roi_heads.mask_pooler(feat_list, boxes)
+            # Only run when mask task is actually enabled
+            if sum(len(p) for p in proposals) > 0:
 
-            mask_head_model = MaskHeadFvcoreWrapper(roi_heads).eval()
-            kmacs_sum += measure_kmacs(mask_head_model, mask_pooled)
+                # Run ROIHeads once to obtain pred_instances
+                with torch.no_grad():
+                    pred_instances, _ = roi_heads(images, feature_pyramid, proposals, None)
+
+                # Skip if no detected objects
+                if sum(len(p) for p in pred_instances) > 0:
+
+                    # Mask pooling requires pred_boxes
+                    mask_boxes = [p.pred_boxes for p in pred_instances]
+
+                    with torch.no_grad():
+                        mask_pooled = roi_heads.mask_pooler(feat_list, mask_boxes)
+
+                    pred_classes = torch.cat([p.pred_classes for p in pred_instances])
+                    mask_head_model = MaskHeadFvcoreWrapper(roi_heads, pred_classes).eval()
+                    kmacs_sum += measure_kmacs(mask_head_model, mask_pooled)
+            
+            #with torch.no_grad():
+            #    mask_pooled = roi_heads.mask_pooler(feat_list, boxes)
+            #
+            #if sum(len(p) for p in proposals) > 0:
+            #    mask_head_model = MaskHeadFvcoreWrapper(roi_heads, proposals).eval()
+            #    kmacs_sum += measure_kmacs(mask_head_model, mask_pooled)
 
     # ---------- Pixel count (unchanged) ----------
     pixels = sum([reduce(operator.mul, list(d.shape)) for d in data.values()])
@@ -385,18 +406,14 @@ class BoxHeadPredictorFvcoreWrapper(nn.Module):
 
 
 class MaskHeadFvcoreWrapper(nn.Module):
-    """
-    Wrapper to measure FLOPs only for the mask head (if available).
-
-    Input shape:
-        (num_boxes, C, pool_h, pool_w)
-    """
-    def __init__(self, roi_heads):
+    def __init__(self, roi_heads, pred_classes):
         super().__init__()
         self.mask_head = roi_heads.mask_head
+        self.pred_classes = pred_classes
 
     def forward(self, mask_features):
-        return self.mask_head(mask_features)
+        # simulate detectron2 mask inference
+        return self.mask_head.layers(mask_features)
 
 class DarknetBackboneOnlyFvcoreWrapper(nn.Module):
     """
