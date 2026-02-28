@@ -349,6 +349,8 @@ def measure_kmacs(module: nn.Module, inputs, tag: str = None) -> float:
         #print("unsupported ops =", flops.unsupported_ops())
         #print("uncalled modules =", flops.uncalled_modules())
         #print("params =", sum(p.numel() for p in module.parameters()))
+        
+        del flops
 
     kmacs = _flops_to_kmacs(total_flops)
     name = tag or module.__class__.__name__
